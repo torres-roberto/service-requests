@@ -109,7 +109,7 @@ namespace ServiceRequests.Tests
             // Assert
             var remainingServiceRequests = _serviceRequestsStore.GetAll();
             Assert.NotNull(remainingServiceRequests);
-            Assert.Equal(0, remainingServiceRequests.Count());
+            Assert.Empty(remainingServiceRequests);
         }
     }
 }

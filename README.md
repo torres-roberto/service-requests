@@ -24,4 +24,5 @@ Notes on Code Challenge doc:
 
 * The API runs on port 5000 for http and 5001 for https. For my own testing, I used Postman and the http port 5000.
 
-* The spec suggested to return statuses: 201 and 404 for DELETE. I am returning back 204 instead of 201 (since 201 is created). 
+* The spec states to return statuses: 201 and 404 for DELETE. I am returning back 204 instead of 201 (since 201 is created). 
+* The spec has `UpdateBy` field as a DateTime. I implemented it this way, but the name seems kind of strange given the type. 

@@ -1,6 +1,6 @@
 using System;
 
-namespace ServiceRequests
+namespace ServiceRequests.Application
 {
     public enum CurrentStatus
     {
