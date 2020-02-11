@@ -41,9 +41,9 @@ namespace ServiceRequests.Controllers
         [HttpGet("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
-        public IActionResult GetById(string id)
+        public IActionResult GetById(Guid id)
         {
-            var serviceRequest = _serviceRequestsStore.GetById(Guid.Parse(id));
+            var serviceRequest = _serviceRequestsStore.GetById(id);
 
             if (serviceRequest == null)
             {
@@ -60,28 +60,59 @@ namespace ServiceRequests.Controllers
         {
             var serviceRequest = new ServiceRequest
             {
-              Id = Guid.NewGuid()                  
+                Id = Guid.NewGuid(),
+                BuildingCode = body.BuildingCode,
+                CreatedBy = body.CreatedBy,
+                CreatedDate = body.CreatedDate.Value,
+                CurrentStatus = body.CurrentStatus.Value,
+                Description = body.Description,
+                LastModifiedBy = body.LastModifiedBy,
+                LastUpdatedBy = body.LastUpdatedBy.Value
             };
             
             _serviceRequestsStore.Create(serviceRequest);
             
-            return CreatedAtAction(nameof(GetById), new { id = serviceRequest.Id }, serviceRequest);
+            return CreatedAtAction(nameof(Post), new { id = serviceRequest.Id }, serviceRequest);
         }
 
         [HttpPut("{id}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
         [ProducesResponseType(404)]
-        public IActionResult Put(ServiceRequestBody body)
+        public IActionResult Put(Guid id, [FromBody] ServiceRequestBody body)
         {
+            if (_serviceRequestsStore.GetById(id) == null)
+            {
+                return NotFound();
+            }
+
+            var serviceRequest = new ServiceRequest
+            {
+                Id = id,
+                BuildingCode = body.BuildingCode,
+                CreatedBy = body.CreatedBy,
+                CreatedDate = body.CreatedDate.Value,
+                CurrentStatus = body.CurrentStatus.Value,
+                Description = body.Description,
+                LastModifiedBy = body.LastModifiedBy,
+                LastUpdatedBy = body.LastUpdatedBy.Value
+            };
+
+            _serviceRequestsStore.Update(id, serviceRequest);
             return Ok();
         }
 
         [HttpDelete("{id}")]
-        [ProducesResponseType(201)]
+        [ProducesResponseType(204)]
         [ProducesResponseType(404)]
-        public IActionResult Delete(string id)
+        public IActionResult Delete(Guid id)
         {
+            if (_serviceRequestsStore.GetById(id) == null)
+            {
+                return NotFound();
+            }
+
+            _serviceRequestsStore.Delete(id);
             return NoContent();
         }
     }
