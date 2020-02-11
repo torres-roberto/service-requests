@@ -22,5 +22,15 @@ namespace ServiceRequests.Application
         {
             _serviceRequests.TryAdd(serviceRequest.Id, serviceRequest);
         }
+
+        public void Update(Guid id, ServiceRequest serviceRequest)
+        {
+            _serviceRequests[id] = serviceRequest;
+        }
+
+        public void Delete(Guid id)
+        {
+            _serviceRequests.Remove(id);
+        }
     }
 }
