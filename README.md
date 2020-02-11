@@ -20,4 +20,4 @@ Notes on Code Challenge doc:
 Storage Choice: In memory Dictionary for fast adds, deletes, lookups, and simplicity.
 
 
-The spec suggested to return statuses: 201 and 404. I am returning back 204 instead of 201 (since 201 is created). 
+The spec suggested to return statuses: 201 and 404 for DELETE. I am returning back 204 instead of 201 (since 201 is created). 
