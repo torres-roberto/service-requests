@@ -1,2 +1,4 @@
 src/ServiceRequests/obj/*
 src/ServiceRequests/bin/*
+src/ServiceRequests.Tests/obj/*
+src/ServiceRequests.Tests/bin/*
