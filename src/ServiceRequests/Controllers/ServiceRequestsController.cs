@@ -1,6 +1,5 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using ServiceRequests.Application;
 using ServiceRequests.Api;
 using System.Linq;
@@ -11,15 +10,10 @@ namespace ServiceRequests.Controllers
     [Route("api/[controller]")]
     public class ServiceRequestsController : ControllerBase
     {
-        private readonly ILogger<ServiceRequestsController> _logger;
         private readonly IServiceRequestsStore _serviceRequestsStore;
 
-        public ServiceRequestsController(
-            ILogger<ServiceRequestsController> logger,
-            IServiceRequestsStore serviceRequestsStore
-        )
+        public ServiceRequestsController(IServiceRequestsStore serviceRequestsStore)
         {
-            _logger = logger;
             _serviceRequestsStore = serviceRequestsStore;
         }
 
